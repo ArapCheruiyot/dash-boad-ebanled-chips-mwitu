@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chips Mwitu Express | Fresh & Hot Fries Delivered!</title>
+    <meta
+      name="description"
+      content="Get freshly fried chips delivered hot to your location! Order via WhatsApp or call us."
+    />
+    <meta
+      name="keywords"
+      content="Chips Mwitu, fries delivery, Nairobi food, best chips Kenya, M-Pesa order"
+    />
+    <meta name="author" content="Chips Mwitu Express" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" as="image" href="chips.webp" />
+    
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <!-- Firebase Firestore SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  </head>
+  <body>
+    <!-- Fixed Moving Header -->
+    <header class="moving-text-container">
+      <div class="moving-text">
+        🚀 Fast Delivery | 🔥 Freshly Fried | 📍 Nairobi | Open 8 AM - Midnight
+      </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <div class="content-wrapper">
+      <!-- Left Sidebar for Location -->
+      <aside class="location-sidebar">
+        <h3>📍 Pin Your Location</h3>
+        <button id="pin-location-btn">📌 Pin My Location</button>
+        <p id="location-info">Your location will appear here...</p>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="container">
+        <img id="logo" src="logo.webp" alt="Chips Mwitu Express Logo" class="logo" />
+        <div class="advert-text">🔥 Freshly Fried, Delivered Hot! 🚀</div>
+        <div class="image-container">
+          <img id="chips-image" src="chips.webp" alt="Freshly Fried Chips" loading="lazy" />
+        </div>
+        <p>😋 <strong>Hot & crispy chips, straight from the fryer!</strong></p>
+        <p>📦 <strong>Price:</strong> KES 150 per pack</p>
+        <p>🚚 <strong>Free delivery</strong> within the region!</p>
+
+        <div class="buttons">
+          <!-- The order button is initially disabled until a location is pinned -->
+          <button id="order-btn" class="order-btn" disabled>📩 Order via WhatsApp</button>
+          <a id="call-btn" class="call-btn" href="tel:+254712345678">📞 Call Us</a>
+          <a id="mpesa-btn" class="mpesa-btn" href="#">💰 Pay via M-Pesa</a>
+        </div>
+
+        <!-- Order Form (Hidden Initially) -->
+        <div id="order-form" class="order-form">
+          <h3>Complete Your Order</h3>
+          <label for="customer-name">Name:</label>
+          <input type="text" id="customer-name" placeholder="Enter your name" />
+
+          <label for="customer-phone">Phone Number:</label>
+          <input type="tel" id="customer-phone" placeholder="Enter your phone number" />
+
+          <label for="order-quantity">Quantity:</label>
+          <input type="number" id="order-quantity" placeholder="Enter quantity" min="1" value="1" />
+
+          <p>
+            <strong>Pinned Location:</strong>
+            <span id="order-location">Not pinned yet</span>
+          </p>
+          <button id="confirm-order">✅ Send Order via WhatsApp</button>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact">
+          📍 <strong>Land Mawe, Nairobi</strong><br />
+          📞 <strong>Call:</strong> +254 712 345 678
+        </div>
+      </main>
+
+      <!-- Right Sidebar for Delivery Timeline -->
+      <aside class="delivery-timeline">
+        <h3>📦 Delivery Timeline</h3>
+        <ul id="section-4-timeline"></ul>
+      </aside>
+    </div>
+
+    <!-- Floating WhatsApp Chat -->
+    <a
+      id="floating-whatsapp"
+      href="https://wa.me/254114932232?text=Hi,%20I%20need%20assistance%20with%20my%20order."
+      class="whatsapp-chat"
+      >💬</a
+    >
+
+    <script src="app.js"></script>
+  </body>
+</html>
