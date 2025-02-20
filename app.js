@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
   // Initialize Firebase (using the compat libraries)
   const firebaseConfig = {
     apiKey: "AIzaSyApCCYURyPlaHb_k_Z1EGdPifMFk7CBfg4",
@@ -38,10 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
           pinnedAddress = `Lat: ${latitude}, Lon: ${longitude}`;
         }
         // Save coordinates in a global variable
-        pinnedCoordinates = {
-          latitude: latitude,
-          longitude: longitude
-        };
+        pinnedCoordinates = { latitude: latitude, longitude: longitude };
 
         // Update the UI with the human-readable address
         locationInfo.innerText = `📍 ${pinnedAddress}`;
@@ -132,8 +130,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to save order data to Firestore
-  console.log("Order Data:", orderData);
-
   async function saveOrder(orderData) {
     try {
       const docRef = await db.collection("orders").add(orderData);
@@ -163,11 +159,14 @@ document.addEventListener("DOMContentLoaded", function () {
       phone: phone,
       quantity: Number(quantity),
       pinnedAddress: pinnedAddress,
-      coordinates: pinnedCoordinates,      // New: Location coordinates
+      coordinates: pinnedCoordinates, // New: Location coordinates
       orderTime: new Date().toISOString(),
       status: "Pending",
-      nextDeliveryTime: nextDeliveryTime     // New: Next available delivery time
+      nextDeliveryTime: nextDeliveryTime // New: Next available delivery time
     };
+
+    // Log orderData to verify its contents (now inside the event handler)
+    console.log("Order Data:", orderData);
 
     // Save the order data to Firestore
     try {
