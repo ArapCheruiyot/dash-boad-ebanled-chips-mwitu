@@ -3,88 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dashboard - Chips Mwitu Express</title>
-    <meta name="description" content="Dashboard for Chips Mwitu Express" />
-    <!-- Bootstrap CSS for layout and tabs -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <!-- Custom Dashboard CSS -->
-    <link rel="stylesheet" href="dashboard.css" />
-    <!-- Firebase SDKs (compat version) -->
+    <title>Chips Mwitu Express | Fresh & Hot Fries Delivered!</title>
+    <meta name="description" content="Get freshly fried chips delivered hot to your location! Order via WhatsApp or call us." />
+    <meta name="keywords" content="Chips Mwitu, fries delivery, Nairobi food, best chips Kenya, M-Pesa order" />
+    <meta name="author" content="Chips Mwitu Express" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" as="image" href="chips.webp" />
+    
+    <!-- Firebase SDKs (assuming your app.js uses the compat version) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   </head>
   <body>
-    <!-- Header with Logo and Organization Name -->
-    <header class="dashboard-header bg-dark text-white p-3">
-      <div class="container d-flex align-items-center">
-        <img src="https://arapcheruiyot.github.io/dash-boad-ebanled-chips-mwitu/logo.webp" alt="Chips Mwitu Express Logo" class="dashboard-logo mr-3" />
-        <h1 class="h3 mb-0">Chips Mwitu Express Dashboard</h1>
+    <!-- Fixed Moving Header -->
+    <header class="moving-text-container">
+      <div class="moving-text">
+        🚀 Fast Delivery | 🔥 Freshly Fried | 📍 Nairobi | Open 8 AM - Midnight
       </div>
     </header>
 
-    <!-- Main Container -->
-    <div class="container mt-4">
-      <!-- Navigation Tabs -->
-      <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="live-orders-tab" data-toggle="tab" href="#live-orders" role="tab" aria-controls="live-orders" aria-selected="true">
-            Live Orders
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="processed-orders-tab" data-toggle="tab" href="#processed-orders" role="tab" aria-controls="processed-orders" aria-selected="false">
-            Processed Orders
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="analytics-tab" data-toggle="tab" href="#analytics" role="tab" aria-controls="analytics" aria-selected="false">
-            Analytics
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="vendor-updates-tab" data-toggle="tab" href="#vendor-updates" role="tab" aria-controls="vendor-updates" aria-selected="false">
-            Vendor Updates
-          </a>
-        </li>
-      </ul>
+    <!-- Main Content Wrapper -->
+    <div class="content-wrapper">
+      <!-- Left Sidebar for Location -->
+      <aside class="location-sidebar">
+        <h3>📍 Pin Your Location</h3>
+        <button id="pin-location-btn">📌 Pin My Location</button>
+        <p id="location-info">Your location will appear here...</p>
+      </aside>
 
-      <!-- Tab Content Panels -->
-      <div class="tab-content" id="dashboardTabsContent">
-        <!-- Live Orders Panel -->
-        <div class="tab-pane fade show active" id="live-orders" role="tabpanel" aria-labelledby="live-orders-tab">
-          <h3 class="mt-3">Live Orders</h3>
-          <div id="liveOrdersContent">
-            <p>Loading live orders...</p>
-          </div>
+      <!-- Main Content -->
+      <main class="container">
+        <img id="logo" src="logo.webp" alt="Chips Mwitu Express Logo" class="logo" />
+        <div class="advert-text">🔥 Freshly Fried, Delivered Hot! 🚀</div>
+        <div class="image-container">
+          <img id="chips-image" src="chips.webp" alt="Freshly Fried Chips" loading="lazy" />
         </div>
-        <!-- Processed Orders Panel -->
-        <div class="tab-pane fade" id="processed-orders" role="tabpanel" aria-labelledby="processed-orders-tab">
-          <h3 class="mt-3">Processed Orders</h3>
-          <div id="processedOrdersContent">
-            <p>Processed orders will appear here.</p>
-          </div>
+        <p>😋 <strong>Hot & crispy chips, straight from the fryer!</strong></p>
+        <p>📦 <strong>Price:</strong> KES 150 per pack</p>
+        <p>🚚 <strong>Free delivery</strong> within the region!</p>
+        <div class="buttons">
+          <!-- The order button is initially disabled until a location is pinned -->
+          <button id="order-btn" class="order-btn" disabled>📩 Order via WhatsApp</button>
+          <a id="call-btn" class="call-btn" href="tel:+254712345678">📞 Call Us</a>
+          <a id="mpesa-btn" class="mpesa-btn" href="#">💰 Pay via M-Pesa</a>
         </div>
-        <!-- Analytics Panel -->
-        <div class="tab-pane fade" id="analytics" role="tabpanel" aria-labelledby="analytics-tab">
-          <h3 class="mt-3">Analytics</h3>
-          <div id="analyticsContent">
-            <p>Analytics charts will be displayed here.</p>
-          </div>
+
+        <!-- Order Form (Hidden Initially) -->
+        <div id="order-form" class="order-form">
+          <h3>Complete Your Order</h3>
+          <label for="customer-name">Name:</label>
+          <input type="text" id="customer-name" placeholder="Enter your name" />
+          <label for="customer-phone">Phone Number:</label>
+          <input type="tel" id="customer-phone" placeholder="Enter your phone number" />
+          <label for="order-quantity">Quantity:</label>
+          <input type="number" id="order-quantity" placeholder="Enter quantity" min="1" value="1" />
+          <p>
+            <strong>Pinned Location:</strong>
+            <span id="order-location">Not pinned yet</span>
+          </p>
+          <button id="confirm-order">✅ Send Order via WhatsApp</button>
         </div>
-        <!-- Vendor Updates Panel -->
-        <div class="tab-pane fade" id="vendor-updates" role="tabpanel" aria-labelledby="vendor-updates-tab">
-          <h3 class="mt-3">Vendor Updates</h3>
-          <div id="vendorUpdatesContent">
-            <p>Vendor update controls will appear here.</p>
-          </div>
+
+        <!-- Contact Info -->
+        <div class="contact">
+          📍 <strong>Land Mawe, Nairobi</strong><br />
+          📞 <strong>Call:</strong> +254 712 345 678
         </div>
-      </div>
+      </main>
+
+      <!-- Right Sidebar for Delivery Timeline -->
+      <aside class="delivery-timeline">
+        <h3>📦 Delivery Timeline</h3>
+        <ul id="section-4-timeline"></ul>
+      </aside>
     </div>
 
-    <!-- Bootstrap JS, jQuery, and Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Dashboard JavaScript -->
-    <script src="dashboard.js"></script>
+    <!-- Floating WhatsApp Chat -->
+    <a id="floating-whatsapp" href="https://wa.me/254114932232?text=Hi,%20I%20need%20assistance%20with%20my%20order." class="whatsapp-chat">💬</a>
+
+    <!-- Load the main app script -->
+    <script src="app.js"></script>
   </body>
 </html>
