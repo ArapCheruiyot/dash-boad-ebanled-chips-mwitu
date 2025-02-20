@@ -4,20 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Chips Mwitu Express | Fresh & Hot Fries Delivered!</title>
-    <meta
-      name="description"
-      content="Get freshly fried chips delivered hot to your location! Order via WhatsApp or call us."
-    />
-    <meta
-      name="keywords"
-      content="Chips Mwitu, fries delivery, Nairobi food, best chips Kenya, M-Pesa order"
-    />
+    <meta name="description" content="Get freshly fried chips delivered hot to your location! Order via WhatsApp or call us." />
+    <meta name="keywords" content="Chips Mwitu, fries delivery, Nairobi food, best chips Kenya, M-Pesa order" />
     <meta name="author" content="Chips Mwitu Express" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="preload" as="image" href="chips.webp" />
-    
-   <script type="module" src="experiment.js"></script>
-
+    <!-- Load experiment.js as a module -->
+    <script type="module" src="experiment.js"></script>
   </head>
   <body>
     <!-- Fixed Moving Header -->
@@ -46,7 +39,6 @@
         <p>😋 <strong>Hot & crispy chips, straight from the fryer!</strong></p>
         <p>📦 <strong>Price:</strong> KES 150 per pack</p>
         <p>🚚 <strong>Free delivery</strong> within the region!</p>
-
         <div class="buttons">
           <!-- The order button is initially disabled until a location is pinned -->
           <button id="order-btn" class="order-btn" disabled>📩 Order via WhatsApp</button>
@@ -59,13 +51,10 @@
           <h3>Complete Your Order</h3>
           <label for="customer-name">Name:</label>
           <input type="text" id="customer-name" placeholder="Enter your name" />
-
           <label for="customer-phone">Phone Number:</label>
           <input type="tel" id="customer-phone" placeholder="Enter your phone number" />
-
           <label for="order-quantity">Quantity:</label>
           <input type="number" id="order-quantity" placeholder="Enter quantity" min="1" value="1" />
-
           <p>
             <strong>Pinned Location:</strong>
             <span id="order-location">Not pinned yet</span>
@@ -88,13 +77,8 @@
     </div>
 
     <!-- Floating WhatsApp Chat -->
-    <a
-      id="floating-whatsapp"
-      href="https://wa.me/254114932232?text=Hi,%20I%20need%20assistance%20with%20my%20order."
-      class="whatsapp-chat"
-      >💬</a
-    >
-
-    <script src="app.js"></script>
+    <a id="floating-whatsapp" href="https://wa.me/254114932232?text=Hi,%20I%20need%20assistance%20with%20my%20order." class="whatsapp-chat">💬</a>
+    
+    <!-- Removed <script src="app.js"></script> to avoid conflicts -->
   </body>
 </html>
