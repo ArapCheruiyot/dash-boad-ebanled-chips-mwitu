@@ -132,6 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to save order data to Firestore
+  console.log("Order Data:", orderData);
+
   async function saveOrder(orderData) {
     try {
       const docRef = await db.collection("orders").add(orderData);
