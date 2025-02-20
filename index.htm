@@ -9,8 +9,10 @@
     <meta name="author" content="Chips Mwitu Express" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="preload" as="image" href="chips.webp" />
-    <!-- Load experiment.js as a module -->
-    <script type="module" src="experiment.js"></script>
+    
+    <!-- Firebase SDKs (assuming your app.js uses the compat version) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
   </head>
   <body>
     <!-- Fixed Moving Header -->
@@ -79,6 +81,7 @@
     <!-- Floating WhatsApp Chat -->
     <a id="floating-whatsapp" href="https://wa.me/254114932232?text=Hi,%20I%20need%20assistance%20with%20my%20order." class="whatsapp-chat">💬</a>
 
-    <!-- Note: The previous app.js script has been removed to avoid conflicts -->
+    <!-- Load the main app script -->
+    <script src="app.js"></script>
   </body>
 </html>
