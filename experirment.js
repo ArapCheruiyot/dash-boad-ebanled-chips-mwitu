@@ -21,7 +21,6 @@ const db = getFirestore(app);
 
 // Wait for the DOM to be fully loaded (module scripts are deferred by default)
 document.addEventListener("DOMContentLoaded", () => {
-  
   // Get the "Pin My Location" button element
   const pinLocationBtn = document.getElementById("pin-location-btn");
 
@@ -32,14 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
       navigator.geolocation.getCurrentPosition(async (position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-        
+
         // Use a reverse geocoding service (e.g., OpenStreetMap's Nominatim) to get a human-readable address
         const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
         try {
           const response = await fetch(url);
           const data = await response.json();
           const address = data.display_name || `Lat: ${lat}, Lon: ${lon}`;
-          
+
           // Log the retrieved address to the console
           console.log("Pinned Address:", address);
 
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             longitude: lon,
             timestamp: new Date().toISOString()
           });
-          
+
           console.log("Location saved with ID:", docRef.id);
         } catch (error) {
           console.error("Error fetching reverse geocode data or saving location:", error);
